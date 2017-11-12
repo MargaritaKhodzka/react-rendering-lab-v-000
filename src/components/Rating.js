@@ -11,6 +11,19 @@ class Rating extends React.Component {
     };
   }
 
+//implement a componentWillReceiveProps
+//nextProps passed into the method
+//compare the nextProps rating to props rating
+//call setState with the correct values
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      //average score is increasing if someone likes the book
+      increasing: this.props.rating < nextProps.rating,
+      //decreasing when dislike the book
+      decreasing: this.props.rating > nextProps.rating
+    })
+  }
+
   render() {
     let trend = 'stable';
     if (this.state.increasing) {
